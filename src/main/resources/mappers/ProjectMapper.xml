@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yi.project.dao.ProjectDao">
+	<insert id="insert" parameterType="Project">
+		insert into project (project_name, start_date, end_date, progress)
+		values (#{project_name}, #{start_date}, #{end_date}, #{progress})
+	</insert>
+	
+	<select id="selectLastNo" resultType="int">
+		select last_insert_id()
+	</select>
+	
+	<select id="select" resultType="Project">
+		select * from project order by project_no desc
+	</select>
+	
+	<select id="selectByNo" resultType="Project">
+		select * from project where project_no = #{project_no}
+	</select>
+	
+	<update id="modify" parameterType="Project">
+		update project set project_name = #{project_name}, start_date = #{start_date}, end_date = #{end_date}, progress = #{progress}
+		where project_no = #{project_no}
+	</update>
+	
+	<delete id="delete">
+		delete from project where project_no = #{project_no}
+	</delete>
+</mapper>
